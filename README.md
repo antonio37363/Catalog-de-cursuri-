@@ -1,8 +1,8 @@
-📚 Catalog de Cursuri
-Descriere
-Proiect realizat în C++ pentru gestiunea unui catalog de cursuri (obligatorii, opționale și facultative), folosind:
+# 📚 Catalog de Cursuri
+# Descriere
+# Proiect realizat în C++ pentru gestiunea unui catalog de cursuri (obligatorii, opționale și facultative), folosind:
 
-Tehnologii folosite
+# Tehnologii folosite
 Programare orientată pe obiecte (OOP)
 
 Moștenire
@@ -15,7 +15,7 @@ Excepții personalizate
 
 Serializare CSV și JSON
 
-Funcționalități ✅
+# Funcționalități 
 ✅ Adăugare curs nou
 
 ✅ Afișare cursuri
@@ -30,27 +30,30 @@ Funcționalități ✅
 
 ✅ Salvare/încărcare din fișiere .csv și .json
 
-Structura proiectului
+# Structura proiectului
 include/ → fișiere .hpp (declarații clase)
 
 src/ → fișiere .cpp (implementări)
 
 Proiect_2/ → executabil, csv/json de test
 
-Cum rulez proiectul?
-Compilează:
+# Cum rulez proiectul?
 
+# Compilează:
 
 g++ -std=c++17 -Wall -Iinclude src/*.cpp -o catalog.exe
-Rulează:
+
+# Rulează:
 
 ./catalog.exe
-Tehnologii folosite
+
+# Tehnologii folosite
+
 C++
 
 STL (vector, fstream, algorithm, sstream)
 
 Git & GitHub
 
-Autor
-Antonio Păun
+# Autor: 
+    Antonio Păun
