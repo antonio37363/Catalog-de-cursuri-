@@ -1,49 +1,54 @@
 📚 Catalog de Cursuri
-
 Descriere
-    Proiect realizat în C++ pentru gestiunea unui catalog de cursuri (obligatorii, opționale și facultative), folosind:
+Proiect realizat în C++ pentru gestiunea unui catalog de cursuri (obligatorii, opționale și facultative), folosind:
 
-    Programare orientată pe obiecte (OOP)
+Programare orientată pe obiecte (OOP)
 
-    Moștenire
+Moștenire
 
-    Polimorfism
+Polimorfism
 
-    Funcții virtuale pure
+Funcții virtuale pure
 
-    Excepții personalizate
+Excepții personalizate
 
-    Serializare CSV și JSON
+Serializare CSV și JSON
 
 Funcționalități
-    ✅ Adăugare curs nou
-    ✅ Afișare cursuri
-    ✅ Ștergere curs
-    ✅ Modificare note/procente
-    ✅ Căutare avansată cursuri
-    ✅ Sortare cursuri (nume, note, credite)
-    ✅ Salvare/încărcare din fișiere .csv și .json
+✅ Adăugare curs nou
+✅ Afișare cursuri
+✅ Ștergere curs
+✅ Modificare note/procente
+✅ Căutare avansată cursuri
+✅ Sortare cursuri (nume, note, credite)
+✅ Salvare/încărcare din fișiere .csv și .json
 
 Structura proiectului
-    include/ → fișiere .hpp (declarații clase)
-    src/ → fișiere .cpp (implementări)
-    Proiect_2/ → executabil, csv/json de test
+include/ → fișiere .hpp (declarații clase)
 
-    Cum rulez proiectul?
+src/ → fișiere .cpp (implementări)
 
+Proiect_2/ → executabil, csv/json de test
+
+Cum rulez proiectul?
 Compilează proiectul:
-    g++ -std=c++17 -Wall -Iinclude src/*.cpp -o catalog.exe
 
+bash
+Copy
+Edit
+g++ -std=c++17 -Wall -Iinclude src/*.cpp -o catalog.exe
 Rulează executabilul:
-    ./catalog.exe
 
+bash
+Copy
+Edit
+./catalog.exe
 Tehnologii folosite
-    C++
+C++
 
-    STL (vector, fstream, algorithm, sstream)
+STL (vector, fstream, algorithm, sstream)
 
-    Git & GitHub
+Git & GitHub
 
-Autor:
-    Antonio Păun
-
+Autor
+Antonio Păun
