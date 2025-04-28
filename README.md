@@ -2,6 +2,7 @@
 Descriere
 Proiect realizat în C++ pentru gestiunea unui catalog de cursuri (obligatorii, opționale și facultative), folosind:
 
+Tehnologii folosite
 Programare orientată pe obiecte (OOP)
 
 Moștenire
@@ -14,13 +15,19 @@ Excepții personalizate
 
 Serializare CSV și JSON
 
-Funcționalități
+Funcționalități ✅
 ✅ Adăugare curs nou
+
 ✅ Afișare cursuri
+
 ✅ Ștergere curs
+
 ✅ Modificare note/procente
+
 ✅ Căutare avansată cursuri
+
 ✅ Sortare cursuri (nume, note, credite)
+
 ✅ Salvare/încărcare din fișiere .csv și .json
 
 Structura proiectului
@@ -31,17 +38,12 @@ src/ → fișiere .cpp (implementări)
 Proiect_2/ → executabil, csv/json de test
 
 Cum rulez proiectul?
-Compilează proiectul:
+Compilează:
 
-bash
-Copy
-Edit
+
 g++ -std=c++17 -Wall -Iinclude src/*.cpp -o catalog.exe
-Rulează executabilul:
+Rulează:
 
-bash
-Copy
-Edit
 ./catalog.exe
 Tehnologii folosite
 C++
