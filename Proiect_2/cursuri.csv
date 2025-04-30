@@ -1,4 +1,7 @@
-obligatoriu,POO,Popescu Ion,5,9,10,8,7
-obligatoriu,LFA,Ionescu Maria,4,8,7,9,10
-optional,BD,Georgescu Ana,5,9,8,7
-facultativ,SD,Marin Adrian,3,10,9,95
+obligatoriu,POO,Popescu,5,10,9,8,7,2025-04-28,1
+optional,LFA,Marin,4,3,4,2,2025-04-28,1
+facultativ,Etica,Andrei,2,10,10,100%,2025-04-28,1
+obligatoriu,SD,Ionescu,6,4,5,5,3,2025-04-28,2
+optional,PA,Pop,Ion,5,10,10,10,2025-04-28,2
+facultativ,BazeEtice,Ionescu,3,4,3,50%,2025-04-28,2
+

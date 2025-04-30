@@ -1,59 +1,51 @@
 # 📚 Catalog de Cursuri
-# Descriere
-# Proiect realizat în C++ pentru gestiunea unui catalog de cursuri (obligatorii, opționale și facultative), folosind:
 
-# Tehnologii folosite
-Programare orientată pe obiecte (OOP)
+## 🔍 Descriere
 
-Moștenire
+Acest proiect, realizat în C++, simulează un catalog de cursuri universitare (obligatorii, opționale și facultative). Utilizatorul poate fi **secretar** (care are acces complet) sau **student** (care își poate vizualiza propriile cursuri).
 
-Polimorfism
 
-Funcții virtuale pure
 
-Excepții personalizate
+## 🛠️ Tehnologii folosite
 
-Serializare CSV și JSON
+- **C++** (OOP, STL, fișiere, excepții)
+- STL: `vector`, `fstream`, `sstream`, `algorithm`
+- Serializare în **CSV** și **JSON**
+- Git & GitHub
 
-# Funcționalități 
-✅ Adăugare curs nou
 
-✅ Afișare cursuri
 
-✅ Ștergere curs
+## ✅ Funcționalități implementate
 
-✅ Modificare note/procente
+- [x] Adăugare curs (cu ID student)
+- [x] Afișare cursuri
+- [x] Salvare/încărcare fișiere `.csv` și `.json`
+- [x] Sortare (nume, note, credite)
+- [x] Căutare avansată (nume/profesor/prag)
+- [x] Modificare note
+- [x] Ștergere curs
+- [x] **Verificare promovare**
+- [x] **Afișare metodă calcul notă finală**
+- [x] **Afișare dată ultimă modificare notă**
+- [x] Vizualizare cursuri proprii (mod student)
+- [x] Număr total de credite promovate
 
-✅ Căutare avansată cursuri
 
-✅ Sortare cursuri (nume, note, credite)
 
-✅ Salvare/încărcare din fișiere .csv și .json
+## 📁 Structura proiectului
 
-# Structura proiectului
-include/ → fișiere .hpp (declarații clase)
+Catalog-de-cursuri/ ├── include/ ├── src/ ├── cursuri.csv ├── cursuri.json ├── catalog.exe (opțional) ├── README.md
 
-src/ → fișiere .cpp (implementări)
 
-Proiect_2/ → executabil, csv/json de test
+## ▶️ Cum rulezi proiectul?
 
-# Cum rulez proiectul?
-
-# Compilează:
-
+1. Compilează:
 g++ -std=c++17 -Wall -Iinclude src/*.cpp -o catalog.exe
 
-# Rulează:
+Rulează:
 
 ./catalog.exe
 
-# Tehnologii folosite
-
-C++
-
-STL (vector, fstream, algorithm, sstream)
-
-Git & GitHub
-
-# Autor: 
-    Antonio Păun
+# 👤 Autor
+Antonio Păun
+Facultatea de Matematică și Informatică, UB

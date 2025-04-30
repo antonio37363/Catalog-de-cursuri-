@@ -1,4 +1,5 @@
 #include "CursOptional.hpp"
+#include "Utils.hpp"
 #include <iomanip>
 #include <sstream>
 #include <iostream>
@@ -22,18 +23,21 @@ void CursOptional::setProiect1(int nota)
 {
     if (nota < 0 || nota > 10) throw ExceptieNotaInvalida();
     proiect1 = nota;
+    setDataModificare(getCurrentDate());
 }
 
 void CursOptional::setProiect2(int nota)
 {
     if (nota < 0 || nota > 10) throw ExceptieNotaInvalida();
     proiect2 = nota;
+    setDataModificare(getCurrentDate());
 }
 
 void CursOptional::setProiect3(int nota)
 {
     if (nota < 0 || nota > 10) throw ExceptieNotaInvalida();
     proiect3 = nota;
+    setDataModificare(getCurrentDate());
 }
 
 Curs* CursOptional::clone() const
@@ -55,6 +59,10 @@ void CursOptional::afiseaza() const
     std::cout << "Nota proiect 2: " << proiect2 << '\n';
     std::cout << "Nota proiect 3: " << proiect3 << '\n';
     std::cout << "Nota finala: " << std::fixed << std::setprecision(2) << nota_finala() << '\n';
+    std::cout << "Data ultimei modificari: " << getDataModificare() << '\n';
+    std::cout << "Status: " << (nota_finala() >= 5 ? "Promovat" : "Nepromovat") << "\n";
+    std::cout << "Metoda de calcul: (proiect1 + proiect2 + proiect3) / 3\n";
+    
 }
 
 std::string CursOptional::getNume() const
@@ -80,7 +88,7 @@ std::string CursOptional::toCSV() const
 
     return nume_curs + "," + profesor + "," + std::to_string(credite) + "," +
            std::to_string(proiect1) + "," + std::to_string(proiect2) + "," +
-           std::to_string(proiect3) + "," + oss.str();
+           std::to_string(proiect3) + "," + oss.str() + "," + data_modificare;
 }
 
 std::string CursOptional::toJSON() const
@@ -95,6 +103,6 @@ std::string CursOptional::toJSON() const
         "\"nota_proiect_1\": " + std::to_string(proiect1) + ",\n" +
         "\"nota_proiect_2\": " + std::to_string(proiect2) + ",\n" +
         "\"nota_proiect_3\": " + std::to_string(proiect3) + ",\n" +
-        "\"nota_finala\": " + oss.str() + "\n"
+        "\"nota_finala\": " + oss.str() + data_modificare + "\n"
         "}";
 }

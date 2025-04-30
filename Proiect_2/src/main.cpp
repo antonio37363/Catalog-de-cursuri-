@@ -32,6 +32,11 @@ void adaugaCurs(std::vector<Curs*>& cursuri)
     std::cout << "Introdu numarul de credite: ";
     std::cin >> credite;
 
+    std::string idStudent;
+    std::cout << "Introdu ID-ul studentului: ";
+    std::cin >> idStudent;
+
+
     try
     {
         if (tip == 1)
@@ -46,7 +51,9 @@ void adaugaCurs(std::vector<Curs*>& cursuri)
             std::cout << "Nota activitate laborator: ";
             std::cin >> activitate;
 
-            cursuri.push_back(new CursObligatoriu(nume, profesor, credite, scris, colocviu, proiect, activitate));
+            auto* curs = new CursObligatoriu(nume, profesor, credite, scris, colocviu, proiect, activitate);
+            curs->setIdStudent(idStudent);
+            cursuri.push_back(curs);
         }
         else if (tip == 2)
         {
@@ -58,7 +65,9 @@ void adaugaCurs(std::vector<Curs*>& cursuri)
             std::cout << "Nota proiect 3: ";
             std::cin >> p3;
 
-            cursuri.push_back(new CursOptional(nume, profesor, credite, p1, p2, p3));
+            auto* curs = new CursOptional(nume, profesor, credite, p1, p2, p3);
+            curs->setIdStudent(idStudent);
+            cursuri.push_back(curs);
         }
         else if (tip == 3)
         {
@@ -70,7 +79,9 @@ void adaugaCurs(std::vector<Curs*>& cursuri)
             std::cout << "Procent prezenta: ";
             std::cin >> prezenta;
 
-            cursuri.push_back(new CursFacultativ(nume, profesor, credite, eseu, proiect, prezenta));
+            auto* curs = new CursFacultativ(nume, profesor, credite, eseu, proiect, prezenta);
+            curs->setIdStudent(idStudent);
+            cursuri.push_back(curs);
         }
         else
         {
@@ -449,48 +460,44 @@ void incarcareCSV(std::vector<Curs*>& cursuri)
 
         try
         {
-            if (campuri.empty())
-                continue;
+            if (campuri.empty()) continue;
 
             std::string tip = campuri[0];
 
-            if (tip == "obligatoriu" && campuri.size() == 8)
+            if (tip == "obligatoriu" && campuri.size() == 10)
             {
-                cursuri.push_back(new CursObligatoriu(
-                    campuri[1], // nume
-                    campuri[2], // profesor
-                    std::stoi(campuri[3]), // credite
-                    std::stoi(campuri[4]), // nota scris
-                    std::stoi(campuri[5]), // nota colocviu
-                    std::stoi(campuri[6]), // nota proiect
-                    std::stoi(campuri[7])  // nota activitate
-                ));
+                auto* curs = new CursObligatoriu(
+                    campuri[1], campuri[2], std::stoi(campuri[3]),
+                    std::stoi(campuri[4]), std::stoi(campuri[5]),
+                    std::stoi(campuri[6]), std::stoi(campuri[7])
+                );
+                curs->setDataModificare(campuri[8]);
+                curs->setIdStudent(campuri[9]);
+                cursuri.push_back(curs);
             }
-            else if (tip == "optional" && campuri.size() == 7)
+            else if (tip == "optional" && campuri.size() == 9)
             {
-                cursuri.push_back(new CursOptional(
-                    campuri[1], // nume
-                    campuri[2], // profesor
-                    std::stoi(campuri[3]), // credite
-                    std::stoi(campuri[4]), // proiect 1
-                    std::stoi(campuri[5]), // proiect 2
-                    std::stoi(campuri[6])  // proiect 3
-                ));
+                auto* curs = new CursOptional(
+                    campuri[1], campuri[2], std::stoi(campuri[3]),
+                    std::stoi(campuri[4]), std::stoi(campuri[5]),
+                    std::stoi(campuri[6])
+                );
+                curs->setDataModificare(campuri[7]);
+                curs->setIdStudent(campuri[8]);
+                cursuri.push_back(curs);
             }
-            else if (tip == "facultativ" && campuri.size() == 7)
+            else if (tip == "facultativ" && campuri.size() == 9)
             {
-                // luam procentul fara %
                 int procent_prezenta = std::stoi(campuri[6].substr(0, campuri[6].size() - 1));
-            
-                cursuri.push_back(new CursFacultativ(
-                    campuri[1], // nume
-                    campuri[2], // profesor
-                    std::stoi(campuri[3]), // credite
-                    std::stoi(campuri[4]), // nota eseu
-                    std::stoi(campuri[5]), // nota proiect
-                    procent_prezenta       // procent prezenta fara %
-                ));
-            }            
+                auto* curs = new CursFacultativ(
+                    campuri[1], campuri[2], std::stoi(campuri[3]),
+                    std::stoi(campuri[4]), std::stoi(campuri[5]),
+                    procent_prezenta
+                );
+                curs->setDataModificare(campuri[7]);
+                curs->setIdStudent(campuri[8]);
+                cursuri.push_back(curs);
+            }
             else
             {
                 std::cout << "Linie invalida ignorata.\n";
@@ -509,15 +516,106 @@ void incarcareCSV(std::vector<Curs*>& cursuri)
 
 
 
+void vizualizareCursuriStudent(const std::vector<Curs*>& cursuri) {
+    std::string id;
+    std::cout << "Introdu ID-ul tau: ";
+    std::cin >> id;
+
+    bool gasit = false;
+    for (const auto& curs : cursuri) {
+        if (curs->getIdStudent() == id) {
+            curs->afiseaza();
+            std::cout << "------------------------\n";
+            gasit = true;
+        }
+    }
+
+    if (!gasit)
+        std::cout << "Nu ai niciun curs inregistrat.\n";
+}
+
+
+
+
+void afiseazaCreditePromovate(const std::vector<Curs*>& cursuri) {
+    int totalCredite = 0, creditePromovate = 0;
+
+    for (const auto& curs : cursuri) {
+        totalCredite += curs->getCredite();
+        if (curs->nota_finala() >= 5)
+            creditePromovate += curs->getCredite();
+    }
+
+    std::cout << "Ai promovat " << creditePromovate << " din " << totalCredite << " credite.\n";
+}
+
+
+
+
+
+
 
 int main()
 {
     std::vector<Curs*> cursuri; // vector in care adaugam cursurile
 
+    bool esteSecretar;
+    std::cout << "Esti:\n1. Secretar\n2. Student\nAlege: ";
+    int rol;
+    std::cin >> rol;
+    esteSecretar = (rol == 1);
+    
+// Încarcă cursurile din CSV imediat după alegerea rolului
+    incarcareCSV(cursuri);
+
     try
     {
         while (true)
         {
+            if (!esteSecretar)
+            {
+                std::cout << "===== MENIU STUDENT =====\n";
+                std::cout << "1. Vezi cursurile tale\n";
+                std::cout << "2. Vezi cate credite ai promovat\n";
+                std::cout << "0. Iesire\n";
+
+                int opt;
+                std::cin >> opt;
+
+                if (opt == 1)
+                {
+                    vizualizareCursuriStudent(cursuri);
+                }
+                else if (opt == 2) {
+                    std::string id;
+                    std::cout << "Introdu ID-ul tau: ";
+                    std::cin >> id;
+                
+                    std::vector<Curs*> cursuriStudent;
+                    for (auto& curs : cursuri)
+                        if (curs->getIdStudent() == id)
+                            cursuriStudent.push_back(curs);
+                
+                    if (cursuriStudent.empty())
+                        std::cout << "Nu ai cursuri inregistrate.\n";
+                    else
+                        afiseazaCreditePromovate(cursuriStudent);
+                }                
+                else if (opt == 0)
+                {
+                    std::cout << "La revedere!\n";
+                    break;
+                }
+                else
+                {
+                    std::cout << "Optiune invalida!\n";
+                }
+                continue; // sari peste meniul de secretar
+            }
+
+
+
+
             std::cout << "\n===== MENIU CATALOG =====\n";
             std::cout << "1. Adauga curs\n";
             std::cout << "2. Afiseaza toate cursurile\n";

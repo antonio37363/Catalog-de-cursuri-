@@ -1,49 +1,40 @@
 [
 {
-"nume_curs": "BD",
-"profesor": "Ionescu",
-"credite": 4,
-"nota_proiect_1": 9,
-"nota_proiect_2": 8,
-"nota_proiect_3": 10,
-"nota_finala": 9.00
+"nume_curs": "POO",
+"profesor": "Popescu Ion",
+"credite": 5,
+"nota_scris": 9,
+"nota_colocviu": 10,
+"nota_proiect": 8,
+"nota_activitate": 7,
+"nota_finala": 8.90
 },
 {
 "nume_curs": "LFA",
-"profesor": "Georgescu",
-"credite": 3,
-"nota_eseu": 8,
-"nota_proiect": 7,
-"prezenta": 95,
-"nota_finala": 7.90
+"profesor": "Ionescu Maria",
+"credite": 4,
+"nota_scris": 8,
+"nota_colocviu": 7,
+"nota_proiect": 9,
+"nota_activitate": 10,
+"nota_finala": 8.10
 },
 {
-"nume_curs": "LMC",
-"profesor": "Alexandrescu",
-"credite": 2,
-"nota_eseu": 9,
-"nota_proiect": 10,
-"prezenta": 85,
-"nota_finala": 9.30
-},
-{
-"nume_curs": "POO",
-"profesor": "Popescu",
+"nume_curs": "BD",
+"profesor": "Georgescu Ana",
 "credite": 5,
-"nota_scris": 5,
-"nota_colocviu": 9,
-"nota_proiect": 8,
-"nota_activitate": 7,
-"nota_finala": 6.65
+"nota_proiect_1": 9,
+"nota_proiect_2": 8,
+"nota_proiect_3": 7,
+"nota_finala": 8.00
 },
 {
 "nume_curs": "SD",
-"profesor": "Marin",
-"credite": 6,
-"nota_scris": 7,
-"nota_colocviu": 8,
+"profesor": "Marin Adrian",
+"credite": 3,
+"nota_eseu": 10,
 "nota_proiect": 9,
-"nota_activitate": 10,
-"nota_finala": 7.85
+"prezenta": 9,
+"nota_finala": 7.78
 }
 ]

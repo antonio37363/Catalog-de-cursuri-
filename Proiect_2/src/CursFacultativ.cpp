@@ -1,4 +1,5 @@
 #include "CursFacultativ.hpp"
+#include "Utils.hpp"
 #include <iomanip>
 #include <sstream>
 #include <iostream>
@@ -22,18 +23,21 @@ void CursFacultativ::setNotaEseu(int nota)
 {
     if (nota < 0 || nota > 10) throw ExceptieNotaInvalida();
     nota_eseu = nota;
+    setDataModificare(getCurrentDate());
 }
 
 void CursFacultativ::setNotaProiect(int nota)
 {
     if (nota < 0 || nota > 10) throw ExceptieNotaInvalida();
     nota_proiect = nota;
+    setDataModificare(getCurrentDate());
 }
 
 void CursFacultativ::setPrezenta(int procent)
 {
     if (procent < 0 || procent > 100) throw ExceptiePrezentaInvalida();
     procent_prezenta = procent;
+    setDataModificare(getCurrentDate());
 }
 
 Curs* CursFacultativ::clone() const
@@ -55,6 +59,10 @@ void CursFacultativ::afiseaza() const
     std::cout << "Nota proiect: " << nota_proiect << '\n';
     std::cout << "Prezenta: " << procent_prezenta << "%\n";
     std::cout << "Nota finala: " << std::fixed << std::setprecision(2) << nota_finala() << '\n';
+    std::cout << "Data ultimei modificari: " << getDataModificare() << '\n';
+    std::cout << "Status: " << (nota_finala() >= 5 ? "Promovat" : "Nepromovat") << "\n";
+    std::cout << "Metoda de calcul: 0.4 * eseu + 0.4 * proiect + 0.2 * (prezenta / 10)\n";
+    
 }
 
 std::string CursFacultativ::getNume() const
@@ -80,7 +88,7 @@ std::string CursFacultativ::toCSV() const
 
     return nume_curs + "," + profesor + "," + std::to_string(credite) + "," +
            std::to_string(nota_eseu) + "," + std::to_string(nota_proiect) + "," +
-           std::to_string(procent_prezenta) + "%," + oss.str();
+           std::to_string(procent_prezenta) + "%," + oss.str() + "," + data_modificare;
 }
 
 std::string CursFacultativ::toJSON() const
@@ -95,6 +103,6 @@ std::string CursFacultativ::toJSON() const
            "\"nota_eseu\": " + std::to_string(nota_eseu) + ",\n"
            "\"nota_proiect\": " + std::to_string(nota_proiect) + ",\n"
            "\"prezenta\": " + std::to_string(procent_prezenta) + ",\n"
-           "\"nota_finala\": " + oss.str() + "\n"
+           "\"nota_finala\": " + oss.str() + data_modificare + "\n"
            "}";
 }

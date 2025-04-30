@@ -1,4 +1,5 @@
 #include "CursObligatoriu.hpp"
+#include "Utils.hpp"
 #include <iomanip>
 #include <sstream>
 #include <iostream>
@@ -24,24 +25,28 @@ void CursObligatoriu::setNotaScris(int nota)
 {
     if (nota < 0 || nota > 10) throw ExceptieNotaInvalida();
     nota_scris = nota;
+    setDataModificare(getCurrentDate());
 }
 
 void CursObligatoriu::setNotaColocviu(int nota)
 {
     if (nota < 0 || nota > 10) throw ExceptieNotaInvalida();
     nota_colocviu = nota;
+    setDataModificare(getCurrentDate());
 }
 
 void CursObligatoriu::setNotaProiect(int nota)
 {
     if (nota < 0 || nota > 10) throw ExceptieNotaInvalida();
     nota_proiect = nota;
+    setDataModificare(getCurrentDate());
 }
 
 void CursObligatoriu::setNotaActivitate(int nota)
 {
     if (nota < 0 || nota > 10) throw ExceptieNotaInvalida();
     nota_activitate = nota;
+    setDataModificare(getCurrentDate());
 }
 
 Curs* CursObligatoriu::clone() const
@@ -65,6 +70,10 @@ void CursObligatoriu::afiseaza() const
     std::cout << "Nota proiect: " << nota_proiect << '\n';
     std::cout << "Nota activitate: " << nota_activitate << '\n';
     std::cout << "Nota finala: " << std::fixed << std::setprecision(2) << nota_finala() << '\n';
+    std::cout << "Data ultimei modificari: " << getDataModificare() << '\n';
+    std::cout << "Status: " << (nota_finala() >= 5 ? "Promovat" : "Nepromovat") << "\n";
+    std::cout << "Metoda de calcul: 0.5 * (0.5 * colocviu + 0.3 * proiect + 0.2 * activitate) + 0.5 * scris\n";
+
 }
 
 std::string CursObligatoriu::getNume() const
@@ -98,7 +107,7 @@ std::string CursObligatoriu::toCSV() const
     return nume_curs + "," + profesor + "," + std::to_string(credite) + "," +
            std::to_string(nota_scris) + "," + std::to_string(nota_colocviu) + "," +
            std::to_string(nota_proiect) + "," + std::to_string(nota_activitate) + "," +
-           oss_laborator.str() + "," + oss_finala.str();
+           oss_laborator.str() + "," + oss_finala.str() + "," + data_modificare;
 }
 
 std::string CursObligatoriu::toJSON() const
@@ -114,6 +123,6 @@ std::string CursObligatoriu::toJSON() const
         "\"nota_colocviu\": " + std::to_string(nota_colocviu) + ",\n" +
         "\"nota_proiect\": " + std::to_string(nota_proiect) + ",\n" +
         "\"nota_activitate\": " + std::to_string(nota_activitate) + ",\n" +
-        "\"nota_finala\": " + oss.str() + "\n"
+        "\"nota_finala\": " + oss.str() + data_modificare + "\n"
         "}";
 }
